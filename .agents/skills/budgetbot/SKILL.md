@@ -123,6 +123,8 @@ After receiving the file:
 5. Count the extracted transactions.
 6. Preserve the institution and source filename for every transaction.
 7. Flag any rows that could not be interpreted.
+8. For screenshot-based sources, check for large date gaps in the visible
+   transaction coverage.
 
 Then report:
 
@@ -135,6 +137,11 @@ Then report:
 
 If the file contains transactions outside the selected month, retain them in
 the source record but exclude them from the monthly analysis.
+
+If a screenshot-based Chase or Discover source has a large visible gap between
+covered transaction dates, explicitly alert the user before moving on. State
+that the gap means transactions may be missing from the provided screenshots,
+and identify the uncovered date range in concrete dates.
 
 Then ask:
 
@@ -152,6 +159,13 @@ Do not move on until the institution is complete.
 Provide short instructions for locating a transaction export.
 
 Prefer CSV, followed by Excel and then PDF.
+
+For Fidelity, mention this navigation path when helping the user find the
+right screen:
+
+* From the main dashboard, click `View your performance`
+* Click `See all`
+* Choose `Custom` for the timeframe
 
 After giving the instructions, ask the same institution question again.
 
